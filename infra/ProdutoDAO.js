@@ -4,8 +4,13 @@ class ProdutoDAO {
 		this._connection = connection;
 	}
 
-	lista(callback){
-		this._connection.query("select * from livros", callback);
+	lista(){
+		return new Promise((resolve, reject) => {
+			this._connection.query("select * from livros", (err, result) => {
+				if(err) reject(err);
+				resolve(result);
+			});
+		});
 	}
 
 }

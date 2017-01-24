@@ -7,13 +7,11 @@ module.exports = (app) => {
 		let connection = connectionFactory();
 		let dao = new ProdutoDAO(connection);
 		
-		dao.lista((err, result) => { //Callback error first*
-			if(err){
-				return console.log(err);
-			}
-
-			res.render("produto/lista", {lista: result});
-		});
+		dao.lista()
+			.then(
+				livros => res.render("produto/lista", {lista: livros}),
+				err => console.log(err)
+			);
 
 	});
 
