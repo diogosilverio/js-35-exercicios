@@ -18,7 +18,13 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <!-- dados do produto aqui -->
+                    <% for(let i=0; i<lista.length; i++) {%>
+                    	<tr>
+                    		<td><%= lista[i].titulo %></td>
+                    		<td><%= lista[i].preco %></td>
+                    		<td><%= lista[i].descricao %></td>
+                    	</tr>
+                    <% } %>
                 </tbody>
             </table>
         </div>
