@@ -7,8 +7,11 @@ class ProdutoDAO {
 	lista(){
 		return new Promise((resolve, reject) => {
 			this._connection.query("select * from livros", (err, result) => {
-				if(err) reject(err);
-				resolve(result);
+				if(err) {
+					reject(err);
+				} else {
+					resolve(result);
+				}
 			});
 		});
 	}
