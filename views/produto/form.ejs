@@ -15,7 +15,12 @@
                 <h2 class="basic-title">Add</h2>
                 
                 <div class="errors">
-                   <!-- aqui entrará mensagens de validação em breve -->
+                   <%if(locals.erros){%>
+                    <ul style="list-style-type: none; padding: 0px;">
+                        <% erros.forEach((erro) => {%>
+                        <li class="alert alert-danger" style="padding: 0.5em;"><%= erro.msg %></li>
+                   <%})}%>
+                   </ul>
                 </div>
 
                 <form action="/produtos" method="post" class="well" role="form">

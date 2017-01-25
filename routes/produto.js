@@ -5,7 +5,7 @@ module.exports = (app) => {
 	.get((req, res) => {
 
 		const dao = new LivroDAO(req.connection);
-		
+
 		dao.lista()
 			.then(
 				livros => {
@@ -23,9 +23,18 @@ module.exports = (app) => {
 	})
 	.post((req, res) => {
 		const livro = req.body;
-		console.log("Produto recebido: " + livro);
-		const dao = new LivroDAO(req.connection);
+		
+		req.assert("titulo", "Titulo obrigatorio").notEmpty();
+		req.assert("preco", "Preco deve ser um numero").isFloat();
 
+		const erros = req.validationErrors();
+
+		if(erros){
+			res.render("produto/form", {erros});
+			return;
+		}
+
+		const dao = new LivroDAO(req.connection);
 		dao.adiciona(livro)
 			.then(
 					() => res.redirect("/produtos"),
