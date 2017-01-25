@@ -7,7 +7,9 @@
         <link rel="stylesheet" href="/css/bootstrap-theme.css">
     </head>
     <body>
-
+        <% if(locals.status){ %>
+            <p class="alert alert-info"><%=status%></p>
+        <%}%>
         <div>
             <div class ="container min-container">
                 <h2 class="basic-title">Add</h2>

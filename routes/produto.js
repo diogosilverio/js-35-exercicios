@@ -23,8 +23,8 @@ module.exports = (app) => {
 
 		dao.adiciona(livro)
 			.then(
-					() => res.render("produto/salvo"),
-						(err) => res.status(500).end(err)
+					() => res.render("produto/form", {status: "Incluido com sucesso"}),
+						(err) => res.render("produto/form", {status: err})
 				);
 	});
 
