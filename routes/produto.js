@@ -1,12 +1,10 @@
-const connectionFactory = require("../infra/connection-factory")
-const ProdutoDAO = require("../infra/ProdutoDAO");
+const LivroDAO = require("../infra/LivroDAO");
 
 module.exports = (app) => {
 	app.route("/produtos")
 	.get((req, res) => {
 
-		let connection = connectionFactory();
-		let dao = new ProdutoDAO(connection);
+		const dao = new LivroDAO(req.connection);
 		
 		dao.lista()
 			.then(
@@ -19,8 +17,15 @@ module.exports = (app) => {
 
 	})
 	.post((req, res) => {
-		console.log(req.body);
-		res.sendStatus(201);
+		const livro = req.body;
+		console.log("Produto recebido: " + livro);
+		const dao = new LivroDAO(req.connection);
+
+		dao.adiciona(livro)
+			.then(
+					() => res.render("produto/salvo"),
+						(err) => res.status(500).end(err)
+				);
 	});
 
 	app.get("/produtos/form", (req, res) => res.render("produto/form"));
