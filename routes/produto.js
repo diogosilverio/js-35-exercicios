@@ -43,4 +43,11 @@ module.exports = (app) => {
 	});
 
 	app.get("/produtos/form", (req, res) => res.render("produto/form"));
+
+	app.delete("/produtos/:id", (req, res) => {
+		const id = req.params.id;
+
+		console.log("ID: " + id);
+		res.end();
+	});
 }

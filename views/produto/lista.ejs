@@ -15,6 +15,7 @@
                     <td><a href="">TÍTULO</a></td>
                     <td><a href="">PREÇO</a></td>
                     <td><a href="">DESCRIÇÃO</a></td>
+                    <td><a href="">AÇÃO</a></td>
                 </tr>
                 </thead>
                 <tbody>
@@ -26,6 +27,11 @@
                             <td><%= livro.titulo %></td>
                             <td><%= livro.preco %></td>
                             <td><%= livro.descricao %></td>
+                            <td>
+                                <form action="/produtos/<%=livro.id%>?_method=DELETE" method="post">
+                                    <button type="submit" class="btn btn-danger">Remover</button>
+                                </form>
+                            </td>
                         </tr>
                         <%
                         })
