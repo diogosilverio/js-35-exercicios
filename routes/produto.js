@@ -8,7 +8,12 @@ module.exports = (app) => {
 		
 		dao.lista()
 			.then(
-				livros => res.render("produto/lista", {lista: livros}),
+				livros => {
+					res.format({
+						html: () => res.render("produto/lista", {lista: livros}),
+						json: () => res.json({lista: livros})
+					})
+				},
 				err => {
 					console.log("Erro ocorreu: " + err.message);
 					res.sendStatus(500);
@@ -23,7 +28,7 @@ module.exports = (app) => {
 
 		dao.adiciona(livro)
 			.then(
-					() => res.render("produto/form", {status: "Incluido com sucesso"}),
+					() => res.redirect("/produtos"),
 						(err) => res.render("produto/form", {status: err})
 				);
 	});
