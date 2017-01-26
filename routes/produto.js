@@ -42,9 +42,27 @@ module.exports = (app) => {
 				);
 	});
 
-	app.get("/produtos/form", (req, res) => res.render("produto/form"));
+	app.get("/produtos/form", (req, res) => {
+		const livro = {};
+		res.render("produto/form", {livro});
+	});
 
-	app.delete("/produtos/:id", (req, res) => {
+	app.get("/produtos/form/:id", (req, res) => {
+
+		const id = req.params.id;
+		const dao = new LivroDAO(req.connection);
+
+		dao.buscaPorId(id)
+			.then(
+				(livro) => res.render("produto/form", {livro}),
+				(err) => res.status(500).end(err)
+			);
+
+		
+	});
+
+	app.route("/produtos/:id")
+	.delete((req, res) => {
 		const id = req.params.id;
 		const dao = new LivroDAO(req.connection);
 

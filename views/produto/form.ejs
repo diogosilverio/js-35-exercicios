@@ -28,21 +28,21 @@
                         <label for="titulo">Titulo</label>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-unchecked"></i></span>
-                            <input type="text" name="titulo" placeholder="titulo do livro"/>
+                            <input type="text" name="titulo" placeholder="titulo do livro" value="<%=livro.titulo%>"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="preco">Preço</label>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-unchecked"></i></span>
-                            <input type="text" name="preco" placeholder="valor do livro"/>
+                            <input type="text" name="preco" placeholder="valor do livro" value="<%=livro.preco%>"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="descricao">Descricao</label>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-unchecked"></i></span>
-                            <textarea name="descricao"></textarea>
+                            <textarea name="descricao" cols="50" rows="5"><%=livro.descricao%></textarea>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Gravar</button>

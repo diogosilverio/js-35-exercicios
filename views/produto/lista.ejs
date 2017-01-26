@@ -24,7 +24,7 @@
                     lista.forEach((livro) => {
                         %>
                         <tr>
-                            <td><%= livro.titulo %></td>
+                            <td><a href="/produtos/form/<%=livro.id%>"><%= livro.titulo %></a></td>
                             <td><%= livro.preco %></td>
                             <td><%= livro.descricao %></td>
                             <td>

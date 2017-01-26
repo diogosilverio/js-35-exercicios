@@ -44,6 +44,23 @@ class LivroDAO {
 		});
 	}
 
+	buscaPorId(id){
+		return new Promise((resolve, reject) => {
+			this._connection.query("select * from livros where id = ?", [id], (err, results) => {
+				if(err){
+					console.log(err);
+					return reject("Nao foi possivel buscar livro");
+				}
+
+				if(!results.length){
+					return reject("Livro nao encontrado");
+				}
+
+				resolve(results[0]);
+			});
+		});
+	}
+
 }
 
 module.exports = LivroDAO;
