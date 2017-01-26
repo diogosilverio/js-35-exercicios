@@ -5,8 +5,10 @@ class LivroDAO {
 	}
 
 	lista(){
-		return new Promise((resolve, reject) => {
-			this._connection.query("select * from livros", (err, result) => {
+		const self = this;
+		return new Promise(function (resolve, reject) { //A arrow function p(ossui acesso 
+																// ao this da classe(estatico)). A function(...) nao.
+			self._connection.query("select * from livros", (err, result) => {
 				if(err) {
 					reject(err);
 				} else {
