@@ -22,8 +22,11 @@
                    <%})}%>
                    </ul>
                 </div>
-
+<% if(!livro.id) { %>
                 <form action="/produtos" method="post" class="well" role="form">
+<%} else { %>
+                <form action="/produtos/<%=livro.id%>?_method=PUT" method="post" class="well" role="form">
+<% } %>
                     <div class="form-group">
                         <label for="titulo">Titulo</label>
                         <div class="input-group">

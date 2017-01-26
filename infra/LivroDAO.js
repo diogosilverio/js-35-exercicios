@@ -61,6 +61,19 @@ class LivroDAO {
 		});
 	}
 
+	altera(id, livro){
+		return new Promise((resolve, reject) => {
+			this._connection.query("update livros set ? where id = ?", [livro, id], (err) => {
+				if(err){
+					console.log(err);
+					return reject("Erro ao atualizar livro");
+				}
+
+				resolve();
+			});
+		});
+	}
+
 }
 
 module.exports = LivroDAO;

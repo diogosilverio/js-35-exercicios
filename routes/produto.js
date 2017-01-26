@@ -73,5 +73,17 @@ module.exports = (app) => {
 					() => res.redirect("/produtos"),
 					(err) => res.status(500).send(err)
 				);
+	})
+	.put((req, res) => {
+		const id = req.params.id;
+		const livro = req.body;
+
+		const dao = new LivroDAO(req.connection);
+
+		dao.altera(id, livro)
+			.then(
+				() => res.redirect("/produtos"),
+				(err) => res.sendStatus(500)
+			);
 	});
 }
