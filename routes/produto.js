@@ -30,7 +30,7 @@ module.exports = (app) => {
 		const erros = req.validationErrors();
 
 		if(erros){
-			res.render("produto/form", {erros});
+			res.render("produto/form", {erros, livro: {}});
 			return;
 		}
 
@@ -38,7 +38,7 @@ module.exports = (app) => {
 		dao.adiciona(livro)
 			.then(
 					() => res.redirect("/produtos"),
-						(err) => res.render("produto/form", {status: err})
+						(err) => res.render("produto/form", {status: err, livro: {}})
 				);
 	});
 
@@ -66,7 +66,7 @@ module.exports = (app) => {
 		const id = req.params.id;
 		const dao = new LivroDAO(req.connection);
 
-		console.log("Apagendo livro id: " + id);
+		console.log("Apagando livro id: " + id);
 
 		dao.remove(id)
 			.then(
