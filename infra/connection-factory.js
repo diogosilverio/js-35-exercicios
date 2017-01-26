@@ -2,11 +2,17 @@ const mysql = require("mysql");
 
 module.exports = () => {
 
-	let connection = mysql.createConnection({
+	let database = "casadocodigo";
+
+	if(process.env.NODE_ENV === "test"){
+		database += "_teste";
+	}
+
+	const connection = mysql.createConnection({
 			host: "localhost",
 			user: "root",
 			password: "",
-			database: "casadocodigo"
+			database
 		});
 
 	return connection;
