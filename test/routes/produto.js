@@ -18,4 +18,10 @@ describe("Produto", () => {
 				.expect("Content-type", /json/)
 				.expect(200, done);
 	});
+
+	it("deve possuir livro de testes", (done) =>{
+		request
+			.get("/produtos")
+				.expect(/Testes com Mocha/, done);
+	});
 })
