@@ -46,8 +46,14 @@ module.exports = (app) => {
 
 	app.delete("/produtos/:id", (req, res) => {
 		const id = req.params.id;
+		const dao = new LivroDAO(req.connection);
 
-		console.log("ID: " + id);
-		res.end();
+		console.log("Apagendo livro id: " + id);
+
+		dao.remove(id)
+			.then(
+					() => res.redirect("/produtos"),
+					(err) => res.status(500).send(err)
+				);
 	});
 }
