@@ -19,5 +19,6 @@ app.use(connectionMiddleware);
 
 require("./routes/produto.js")(app);
 require("./routes/cliente.js")(app);
+require("./routes/principal.js")(app);
 
 module.exports = app;
