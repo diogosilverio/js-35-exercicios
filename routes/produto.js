@@ -15,7 +15,7 @@ module.exports = (app) => {
 					})
 				},
 				err => {
-					console.log("Erro ocorreu: " + err.message);
+					// console.log("Erro ocorreu: " + err.message);
 					res.sendStatus(500);
 				}
 			);

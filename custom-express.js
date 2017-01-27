@@ -21,4 +21,8 @@ require("./routes/produto.js")(app);
 require("./routes/cliente.js")(app);
 require("./routes/principal.js")(app);
 
+app.use("*", (req, res, next) =>{
+	res.status(400).render("errors/400");
+});
+
 module.exports = app;
