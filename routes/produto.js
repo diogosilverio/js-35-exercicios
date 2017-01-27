@@ -37,8 +37,11 @@ module.exports = (app) => {
 		const dao = new LivroDAO(req.connection);
 		dao.adiciona(livro)
 			.then(
-					() => res.redirect("/produtos"),
-						(err) => res.render("produto/form", {status: err, livro: {}})
+					() => {
+						app.get("io").emit("novoLivro", livro);
+						res.redirect("/produtos");
+					},
+					(err) => res.render("produto/form", {status: err, livro: {}})
 				);
 	});
 
