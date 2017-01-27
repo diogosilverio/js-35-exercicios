@@ -10,7 +10,7 @@ module.exports = (app) => {
 
 	app.get("/produtos/form", controller.obterCadastro.bind(controller));
 
-	app.get("/produtos/form/:id", controller.buscaPorId.bind(controller));
+	app.get("/produtos/form/:id", controller.buscaPorId());
 
 	app.route("/produtos/:id")
 		.delete(controller.remove.bind(controller))

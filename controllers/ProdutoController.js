@@ -1,4 +1,5 @@
 const LivroDAO = require("../infra/LivroDAO");
+const co = require("co");
 
 class ProdutoController {
 
@@ -48,15 +49,20 @@ class ProdutoController {
 				);
 	}
 
-	buscaPorId(req, res){
-		const id = req.params.id;
-		const dao = new LivroDAO(req.connection);
+	buscaPorId(){
 
-		dao.buscaPorId(id)
-			.then(
-				(livro) => res.render("produto/form", {livro}),
-				(err) => res.status(500).end(err)
-			);
+		return co.wrap(function *(req, res){
+			const id = req.params.id;
+			const dao = new LivroDAO(req.connection);
+
+			try{
+				const livro = yield dao.buscaPorId(id);
+				res.render("produto/form", {livro});
+			} catch(err) {
+				res.status(500).end(err);
+			}
+		
+		});
 	}
 
 	remove(req, res){
