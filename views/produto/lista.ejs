@@ -38,5 +38,20 @@
             </table>
         </div>
         <a href="/produtos/form">[Cadastrar Produto]</a>
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            const socket = io();
+
+            socket.on("novoLivro", (livro) => {
+                const div = document.createElement("div");
+                div.innerHTML = 
+                `
+                <h2>${livro.titulo}</h2>
+                <h3>Preco: R\$${livro.preco}</h3>
+                <p>${livro.descricao}</p>
+                `;
+                document.querySelector("body").appendChild(div);
+            });
+        </script>
     </body>
 </html>
