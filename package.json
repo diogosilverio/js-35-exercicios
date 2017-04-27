@@ -14,13 +14,16 @@
     "socket.io": "^1.7.2"
   },
   "devDependencies": {
+    "@types/node": "^7.0.13",
     "mocha": "^3.2.0",
     "nodemon": "^1.11.0",
-    "supertest": "^2.0.1"
+    "supertest": "^2.0.1",
+    "ts-node": "^3.0.2"
   },
   "scripts": {
     "test": "NODE_ENV=test mocha --recursive",
-    "start": "nodemon server.js"
+    "start": "npm run build:live",
+    "build:live": "nodemon --exec ./node_modules/.bin/ts-node -- ./server.ts"
   },
   "author": "",
   "license": "ISC"

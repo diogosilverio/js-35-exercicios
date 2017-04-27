@@ -1,11 +1,13 @@
-const connectionFactory = require("./connection-factory");
-
-module.exports = (req, res, next) => {
-	console.log("Abrindo conexao...");
-	req.connection = connectionFactory();
-	next(); // Node para a execucao deste middleware 
-			// para carregar os seguintes. Ao concluir
-			// os outros middlewares, retorna para a 
-			// instrucao seguinte.
-	req.connection.end(() => console.log("Conexao fechada."));
+/**
+ * Created by diogo on 25/04/17.
+ */
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const connection_factory_1 = require("./connection-factory");
+function default_1(req, res, next) {
+    console.log("Abrindo conexao...");
+    req.connection = new connection_factory_1.ConnectionFactory().connection();
+    next();
+    req.connection.end(() => console.log("Conexao fechada."));
 }
+exports.default = default_1;
