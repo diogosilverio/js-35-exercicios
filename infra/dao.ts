@@ -28,6 +28,8 @@ export abstract class GenericDAO {
                     if(dql){
                         resolve(result);
                     }
+
+                    resolve();
                 }
             });
         });
