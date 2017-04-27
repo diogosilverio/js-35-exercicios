@@ -57,7 +57,6 @@ export class ProdutoController {
 
 		try{
 			const livro = await dao.buscaPorId(id);
-			console.log(livro);
 			res.render("produto/form", {livro});
 		} catch(e) {
 			res.status(500).end(e);

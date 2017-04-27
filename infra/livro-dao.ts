@@ -24,7 +24,7 @@ export class LivroDAO extends GenericDAO {
     }
 
     buscaPorId(id: number): Promise<any> {
-        return this.dql("select * from livros where id = ?", [id]);
+        return this.dql("select * from livros where id = ?", [id], true);
     }
 
     altera(livro: Livro): Promise<any> {
