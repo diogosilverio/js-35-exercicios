@@ -34,7 +34,7 @@ export class ProdutoRota implements Rota{
     }
 
     private _getFormId(app: Application){
-        app.get("/produtos/form/:id", this._controller.buscaPorId());
+        app.get("/produtos/form/:id", this._controller.buscaPorId.bind(this._controller));
     }
 
 }
