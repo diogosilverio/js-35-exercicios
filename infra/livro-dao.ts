@@ -5,14 +5,14 @@
 import {GenericDAO} from './dao';
 import {Livro} from "../model/livro";
 
-export class LivroDao extends GenericDAO {
+export class LivroDAO extends GenericDAO {
 
     constructor(connection){
         super(connection)
     }
 
     lista(): Promise<any>{
-       return  this.dql("select * from livros;", null);
+       return this.dql("select * from livros;", null);
     }
 
     adiciona(livro: Livro): Promise<any>{

@@ -1,13 +1,15 @@
-const LivroDAO = require("../infra/LivroDAO");
+import {Application} from "express";
+import {LivroDAO} from "../infra/livro-dao";
 const co = require("co");
 
-class ProdutoController {
+export class ProdutoController {
+	private _app: Application;
 
-	constructor(app){
+	constructor(app: Application){
 		this._app = app;
 	}
 
-	lista(req, res){
+	public lista(req, res){
 		const dao = new LivroDAO(req.connection);
 
 		dao.lista()
@@ -25,7 +27,7 @@ class ProdutoController {
 			);	
 	}
 
-	adiciona(req, res){
+	public adiciona(req, res){
 		const livro = req.body;
 		
 		req.assert("titulo", "Titulo obrigatorio").notEmpty();
@@ -49,7 +51,7 @@ class ProdutoController {
 				);
 	}
 
-	buscaPorId(){
+	public buscaPorId(){
 
 		return co.wrap(function *(req, res){
 			const id = req.params.id;
@@ -65,7 +67,7 @@ class ProdutoController {
 		});
 	}
 
-	remove(req, res){
+	public remove(req, res){
 		const id = req.params.id;
 		const dao = new LivroDAO(req.connection);
 
@@ -85,18 +87,16 @@ class ProdutoController {
 
 		const dao = new LivroDAO(req.connection);
 
-		dao.altera(id, livro)
+		dao.altera(livro)
 			.then(
 				() => res.redirect("/produtos"),
 				(err) => res.sendStatus(500)
 			);
 	}
 
-	obterCadastro(req, res){
+	public obterCadastro(req, res){
 		const livro = {};
 		res.render("produto/form", {livro});
 	}
 
 }
-
-module.exports = ProdutoController;

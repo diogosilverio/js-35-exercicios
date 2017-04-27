@@ -32,7 +32,7 @@ export class ConnectionFactory{
             user: "root",
             password: "root",
             database,
-            port: 32768
+            port: 32769
         });
     }
 

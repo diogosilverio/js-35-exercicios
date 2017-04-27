@@ -3,7 +3,7 @@
  */
 import {Application, Request, Response} from 'express';
 import {Rota} from "./irota";
-const ProdutoController = require("../controllers/ProdutoController");
+import {ProdutoController} from "../controllers/produto";
 
 export class ProdutoRota implements Rota{
 

@@ -19,8 +19,9 @@ export abstract class GenericDAO {
     }
 
     private _query(sql: string, dql: boolean, params: any): Promise<any>{
+        const dao = this;
         return new Promise(function(resolve, reject){
-            this._connection().query(sql, params, (err, result) => {
+            dao._connection.query(sql, params, (err, result) => {
                 if(err) {
                     reject(err);
                 } else {
